@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Camera2Zbar.iml" filepath="$PROJECT_DIR$/Camera2Zbar.iml" />
+      <module fileurl="file://D:\ASPRO\Camera2Zbar\Camera2Zbar.iml" filepath="D:\ASPRO\Camera2Zbar\Camera2Zbar.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\ASPRO\Camera2Zbar\app\app.iml" filepath="D:\ASPRO\Camera2Zbar\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/sczbar/sczbar.iml" filepath="$PROJECT_DIR$/sczbar/sczbar.iml" />
+      <module fileurl="file://D:\ASPRO\Camera2Zbar\sczbar\sczbar.iml" filepath="D:\ASPRO\Camera2Zbar\sczbar\sczbar.iml" />
     </modules>
   </component>
 </project>

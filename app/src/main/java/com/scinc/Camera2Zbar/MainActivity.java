@@ -3,11 +3,13 @@ package com.scinc.Camera2Zbar;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 
 import com.scinc.sczbar.DecodeImageUtil;
 import com.scinc.sczbar.ScanActivity;
@@ -30,11 +32,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void skip(View view) {
+        //noinspection ConstantConditions
         File file = new File(getExternalFilesDir(null).getAbsolutePath());
         if (!file.exists()) {
+            //noinspection ResultOfMethodCallIgnored
             file.mkdirs();
         }
         Intent intent = new Intent(MainActivity.this, ScanActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, 100);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 100 && requestCode == 100) {
+            if (data == null) {
+                return;
+            }
+            String result = data.getStringExtra("scan_result");
+            if (!TextUtils.isEmpty(result)) {
+                ((TextView) findViewById(R.id.scan_result)).setText(String.format("扫描结果 : %s", result));
+            }
+        }
     }
 }
