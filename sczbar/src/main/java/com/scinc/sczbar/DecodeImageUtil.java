@@ -10,6 +10,12 @@ import net.sourceforge.zbar.ImageScanner;
 import net.sourceforge.zbar.Symbol;
 import net.sourceforge.zbar.SymbolSet;
 
+/*** 这个类扫描bitmap
+ *
+ * @author Zhang Chao
+ * @date 2018-9-12 17:00
+ * @version 1
+ */
 public class DecodeImageUtil {
 
     private static final String TAG = "DecodeImageUtil";

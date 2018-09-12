@@ -31,6 +31,12 @@ import java.util.Arrays;
 import static android.graphics.ImageFormat.YUV_420_888;
 import static android.hardware.camera2.CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP;
 
+/*** 这个类是二维码扫描界面
+ *
+ * @author Zhang Chao
+ * @date 2018-9-12 17:00
+ * @version 1
+ */
 public class ScanActivity extends AppCompatActivity {
 
     private static final String TAG = ScanActivity.class.getName();
@@ -67,6 +73,9 @@ public class ScanActivity extends AppCompatActivity {
         path = getExternalFilesDir(null).getAbsolutePath();
     }
 
+    /**
+     * 初始化线程
+     */
     private void init() {
         cameraThread = new HandlerThread("camera");
         cameraThread.start();
@@ -74,6 +83,9 @@ public class ScanActivity extends AppCompatActivity {
         mainHandler = new Handler(getMainLooper());
     }
 
+    /**
+     * 初始化图片解析对象
+     */
     private void initImageReader() {
         mImageReader = ImageReader.newInstance(1080, 1920, YUV_420_888, 2);
         mImageReader.setOnImageAvailableListener(new ImageReader.OnImageAvailableListener() {
@@ -86,6 +98,11 @@ public class ScanActivity extends AppCompatActivity {
         }, cameraHandler);
     }
 
+    /**
+     * 使用y800格式解析二维码图片
+     *
+     * @param image 摄像头获取的实时图片
+     */
     private void y800Decode(Image image) {
         ByteBuffer buffer0 = image.getPlanes()[0].getBuffer();
         byte[] b0 = new byte[buffer0.remaining()];
@@ -168,6 +185,10 @@ public class ScanActivity extends AppCompatActivity {
 //        finish();
 //    }
 
+    /**
+     * 界面有焦点时开始扫描
+     * 初始化后台线程与图片解析对象
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -196,6 +217,9 @@ public class ScanActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * 打开摄像头
+     */
     @SuppressLint("MissingPermission")
     public void openCamera() {
         CameraManager manager = (CameraManager) getSystemService(CAMERA_SERVICE);
@@ -237,6 +261,11 @@ public class ScanActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 配置预览参数
+     *
+     * @param map 系统支持的预览尺寸的map
+     */
     private void initCapSize(StreamConfigurationMap map) {
         Size[] allSizes = null;
         if (map != null) {
@@ -254,14 +283,19 @@ public class ScanActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 开始预览
+     */
     private void startPreview() {
         Log.d(TAG, "startPreview: ");
         try {
             Surface pre = new Surface(tvPreview.getSurfaceTexture());
-            final CaptureRequest.Builder builder = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
+            final CaptureRequest.Builder builder =
+                    mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
             builder.addTarget(pre);
             builder.addTarget(mImageReader.getSurface());
-            mCameraDevice.createCaptureSession(Arrays.asList(pre, mImageReader.getSurface()), new CameraCaptureSession.StateCallback() {
+            mCameraDevice.createCaptureSession(Arrays.asList(pre, mImageReader.getSurface()),
+                    new CameraCaptureSession.StateCallback() {
                 @Override
                 public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
                     mCameraSession = cameraCaptureSession;
@@ -283,6 +317,9 @@ public class ScanActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 停止扫描方法
+     */
     private void stopScan() {
         if (mCameraSession == null) {
             return;
@@ -299,6 +336,9 @@ public class ScanActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 退出扫描方法
+     */
     private void quit() {
         if (cameraThread != null && cameraThread.isAlive()) {
             cameraThread.quitSafely();

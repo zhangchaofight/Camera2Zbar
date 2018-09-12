@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SCZbar</string>
+    <string name="scan_result_hint">扫描结果是:</string>
 </resources>

@@ -3,7 +3,8 @@
     package="com.scinc.sczbar">
 
     <application>
-        <activity android:name=".ScanActivity"></activity>
+        <activity android:name=".ScanActivity" />
+        <activity android:name=".ScanResultActivity"></activity>
     </application>
 
 </manifest>
