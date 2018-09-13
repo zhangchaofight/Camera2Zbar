@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ScanView">
+
+        <!--边框线条粗细的一半-->
+        <attr name="angle_half_width" format="dimension"/>
+        <!--边框线条的长度-->
+        <attr name="angle_length" format="dimension"/>
+        <!--扫描线条的长度-->
+        <attr name="scan_line_length" format="dimension"/>
+
+        <!--边框线条颜色-->
+        <attr name="angle_line_color" format="color"/>
+        <!--扫描线条颜色-->
+        <attr name="scan_line_color" format="color"/>
+        <!--阴影部分颜色-->
+        <attr name="shadow_color" format="color"/>
+
+        <!--扫描区域的左边-->
+        <attr name="scan_left" format="dimension"/>
+        <!--扫描区域的上边-->
+        <attr name="scan_top" format="dimension"/>
+        <!--扫描区域的右边-->
+        <attr name="scan_right" format="dimension"/>
+        <!--扫描区域的下边-->
+        <attr name="scan_bottom" format="dimension"/>
+    </declare-styleable>
+</resources>

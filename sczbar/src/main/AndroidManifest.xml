@@ -4,7 +4,8 @@
 
     <application>
         <activity android:name=".ScanActivity" />
-        <activity android:name=".ScanResultActivity"></activity>
+        <activity android:name=".ScanResultActivity" />
+        <activity android:name=".TestActivity"></activity>
     </application>
 
 </manifest>

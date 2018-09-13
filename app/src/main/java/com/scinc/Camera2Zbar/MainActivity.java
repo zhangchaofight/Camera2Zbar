@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.scinc.sczbar.DecodeImageUtil;
-import com.scinc.sczbar.ScanActivity;
+import com.scinc.sczbar.TestActivity;
 
 import java.io.File;
 
@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
             //noinspection ResultOfMethodCallIgnored
             file.mkdirs();
         }
-        Intent intent = new Intent(MainActivity.this, ScanActivity.class);
+//        Intent intent = new Intent(MainActivity.this, ScanActivity.class);
+        Intent intent = new Intent(MainActivity.this, TestActivity.class);
         startActivityForResult(intent, 100);
     }
 
